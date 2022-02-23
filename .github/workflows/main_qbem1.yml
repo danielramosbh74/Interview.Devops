@@ -1,0 +1,51 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App - qbem1
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Log in to registry
+      uses: docker/login-action@v1
+      with:
+        registry: https://registro1qbem.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_c99270ae80e24e369c2c4c0fa2b434a2 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_129cc19cc993433d8c55ab8e77454fdf }}
+
+    - name: Build and push container image to registry
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: registro1qbem.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_c99270ae80e24e369c2c4c0fa2b434a2 }}/nginx-server:${{ github.sha }}
+        file: ./Dockerfile
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'qbem1'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a51c7d26f2f9402a94ee47ea07f940e2 }}
+        images: 'registro1qbem.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_c99270ae80e24e369c2c4c0fa2b434a2 }}/nginx-server:${{ github.sha }}'
