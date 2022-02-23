@@ -105,6 +105,103 @@
 
 ![Nginx](images/Nginx-recem-instalado-com-index-padrao.png)
 
+23/02 - 07:53 - Instalei o Azure CLI no meu Linux (TigerOS - Derivado do Debian / Ubuntu)
+
+    daniel@TigerOS-Daniel:~/Interview.Devops$ az --version
+    azure-cli                         2.0.81
+
+    core                              2.0.81
+    telemetry                          1.0.4
+
+    Extensions:
+    azure-devops                      0.17.0
+
+    Python location '/usr/bin/python3'
+    Extensions directory '/home/daniel/.azure/cliextensions'
+
+    Python (Linux) 3.8.10 (default, Nov 26 2021, 20:14:08) 
+    [GCC 9.3.0]
+
+    Legal docs and information: aka.ms/AzureCliLegal
+
+
+
+    Unable to check if your CLI is up-to-date. Check your internet connection.
+
+    Please let us know how we are doing: https://aka.ms/clihats
+    daniel@TigerOS-Daniel:~/Interview.Devops$ az --version
+    azure-cli                         2.0.81
+
+    core                              2.0.81
+    telemetry                          1.0.4
+
+    Extensions:
+    azure-devops                      0.17.0
+
+    Python location '/usr/bin/python3'
+    Extensions directory '/home/daniel/.azure/cliextensions'
+
+    Python (Linux) 3.8.10 (default, Nov 26 2021, 20:14:08) 
+    [GCC 9.3.0]
+
+    Legal docs and information: aka.ms/AzureCliLegal
+
+
+
+    Unable to check if your CLI is up-to-date. Check your internet connection.
+
+    Please let us know how we are doing: https://aka.ms/clihats
+
+
+23/02 - 08:23 - Tive um problema na autenticação do azure CLI, pois como só consigo me autenticar lá SEM SER ROOT, o Docker dava erro... 
+Mas adicionei o meu usuário comum (sem ser root) ao grupo Docker e resolvi o problema: consegui fazer login no registro1qbem
+
+    daniel@TigerOS-Daniel:~/Interview.Devops$ az login
+    You have logged in. Now let us find all the subscriptions to which you have access...
+    [
+    {
+        "cloudName": "AzureCloud",
+        "id": "ea8d30da-3f15-47e1-afb7-e67a05cf8972",
+        "isDefault": true,
+        "name": "Azure subscription 1",
+        "state": "Enabled",
+        "tenantId": "40432a6b-d61a-4db3-9a3f-ebb073e57bf9",
+        "user": {
+        "name": "danielramosbh74@gmail.com",
+        "type": "user"
+        }
+    }
+    ]
+    daniel@TigerOS-Daniel:~/Interview.Devops$ az acr login --name registro1qbem
+    An error occurred: DOCKER_COMMAND_ERROR
+    Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json: dial unix /var/run/docker.sock: connect: permission denied
+
+    daniel@TigerOS-Daniel:~/Interview.Devops$ sudo groupadd docker
+    [sudo] senha para daniel:    
+    groupadd: grupo 'docker' já existe
+    daniel@TigerOS-Daniel:~/Interview.Devops$ sudo gpasswd -a $USER docker
+    Adicionando usuário daniel ao grupo docker
+    daniel@TigerOS-Daniel:~/Interview.Devops$ newgrp docker
+    daniel@TigerOS-Daniel:~/Interview.Devops$ docker ps -a
+    CONTAINER ID   IMAGE                          COMMAND                  CREATED             STATUS             PORTS                                   NAMES
+    05bad116ccb9   danielramosbh74/nginx-server   "/docker-entrypoint.…"   About an hour ago   Up About an hour   0.0.0.0:8080->80/tcp, :::8080->80/tcp   nginx-server
+    daniel@TigerOS-Daniel:~/Interview.Devops$ az acr login --name registro1qbem
+    Login Succeeded
+    daniel@TigerOS-Daniel:~/Interview.Devops$ 
+
+23/02 - 13:28 - Finalmente o push para o ACR terminou!
+
+    daniel@TigerOS-Daniel:~/Interview.Devops$ docker push registro1qbem.azurecr.io/nginx-server:v1
+    The push refers to repository [registro1qbem.azurecr.io/nginx-server]
+    df777efa38d6: Layer already exists 
+    762b147902c0: Layer already exists 
+    235e04e3592a: Layer already exists 
+    6173b6fa63db: Layer already exists 
+    9a94c4a55fe4: Layer already exists 
+    9a3a6af98e18: Layer already exists 
+    7d0ebbe3f5d2: Pushed 
+    v1: digest: sha256:f2405927204d94ad268a8c3cfdefc17726c1a52559dea9f8dfc5988d053f05e8 size: 1777
+    daniel@TigerOS-Daniel:~/Interview.Devops$ 
 
 
 
