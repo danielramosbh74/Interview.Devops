@@ -38,3 +38,11 @@ No "Centro de implantação" consegui configurar para fazer o push "semi-automá
 - [ ] 5. Via **Github Action** subir a imagem no ACS
 
 - [ ] 6. Liberar acesso publico, porém somente na porta 80
+
+Consegui parcialmente... 
+
+A configuração padrão de rede é com o acesso 100% liberado.
+
+Criei o "Grupo de Segurança de Rede" _nsg1_ e configurei as regras de entrada permitino somente as portas 80 (http) e 22 (ssh, necessária para configurações) e bloqueando a porta 443 (https), mas mesmo parando e reiniciando o aplicativo não funcionou...
+
+![Grupo de Segurança de Rede - nsg1](images/implantei-o-nsg1-para-configurar-as-regras-de-entrada.png)
