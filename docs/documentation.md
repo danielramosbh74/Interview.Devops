@@ -209,7 +209,9 @@ https://docs.microsoft.com/pt-br/azure/container-registry/container-registry-get
 
 23/02 - 14:26 - Me conectei ao Azure pela extensão dele aqui no VS Code. Interessante, pois me mostrou a opção de conectar também ao repositório Git, o que teria de ser feito de qualquer forma (estava começando a ler a documentação) para integrar com o Github Actions.
 
+23/02 - 15:23 - Github Actions configurado: lá, no Azure e aqui no VS Code com a extensão do Azure.
 
+Agora só falta editar o arquivo yml principal dele para conseguir fazer os primeiros builds e deploys automáticos.
 
 
 
