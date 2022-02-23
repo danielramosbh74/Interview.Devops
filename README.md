@@ -18,6 +18,8 @@ Da forma como configurei o Dockerfile, apenas os arquivos alterados na pasta pú
 
 - [x] 4. Criar na azure um Cluster ACS
 
+https://qbem1.azurewebsites.net/
+
 ![Cluster ACS rodando o Nginx](images/qbem1-app-service-is-up-and-running.png)
 
 **Observações**
