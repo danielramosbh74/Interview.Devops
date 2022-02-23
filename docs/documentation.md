@@ -203,8 +203,11 @@ Mas adicionei o meu usuário comum (sem ser root) ao grupo Docker e resolvi o pr
     v1: digest: sha256:f2405927204d94ad268a8c3cfdefc17726c1a52559dea9f8dfc5988d053f05e8 size: 1777
     daniel@TigerOS-Daniel:~/Interview.Devops$ 
 
+Agora que a imagem já está no ACR e no ACS, tentarei executá-la, pois só mostrou a tela inicial padrão.
 
+https://docs.microsoft.com/pt-br/azure/container-registry/container-registry-get-started-portal#run-image-from-registry
 
+23/02 - 14:26 - Me conectei ao Azure pela extensão dele aqui no VS Code. Interessante, pois me mostrou a opção de conectar também ao repositório Git, o que teria de ser feito de qualquer forma (estava começando a ler a documentação) para integrar com o Github Actions.
 
 
 
