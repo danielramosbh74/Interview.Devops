@@ -35,9 +35,17 @@ No "Centro de implantação" consegui configurar para fazer o push "semi-automá
 
 ![Nginx no ACS](images/nginx-configurado-na-acs-azure.png)
 
-- [ ] 5. Via **Github Action** subir a imagem no ACS
+- [x] 5. Via **Github Action** subir a imagem no ACS
 
-- [ ] 6. Liberar acesso publico, porém somente na porta 80
+Sucesso! :)
+Primeiro build e deploy feitos automaticamente após o `git push`, que dispara o **Github Actions" 
+
+![Github Actions](images/Agora-sim---primeiro-build-e-deploy-automatico-no-github-actions-1-de-2.png)
+
+![Github Actions](images/Agora-sim---primeiro-build-e-deploy-automatico-no-github-actions-2-de-2.png)
+
+
+- [x] 6. Liberar acesso publico, porém somente na porta 80
 
 Consegui parcialmente... 
 
